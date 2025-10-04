@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css"
+      integrity="sha512-KulI0psuJQK8UMpOeiMLDXJtGOZEBm8RZNTyBBHIWqoXoPMFcw+L5AEo0YMpsW8BfiuWrdD1rH6GWGgQBF59Lg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="header">
+        <div class="logo">
+          <h1><img src="../assets/logo.png" alt="Logo" /></h1>
+        </div>
+        <ul>
+          <li>
+            <a href="profile.html"><i class="far fa-user"></i> Profile</a>
+          </li>
+          <li>
+            <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+          </li>
+          <li>
+            <a href="notifications.html"
+              ><i class="fas fa-bell"></i> Notifications</a
+            >
+          </li>
+          <li>
+            <a href="" onclick="logout()"
+              ><i class="fas fa-sign-out-alt"></i> Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="sidebar">
+        <ul class="nav-links">
+          <input type="text" placeholder="Search..." />
+          <li>
+            <a href="transactions.html"
+              ><i class="fas fa-home"></i> Transactions</a
+            >
+          </li>
+          <li>
+            <a href="accounts.html"
+              ><i class="fas fa-university"></i> Accounts</a
+            >
+          </li>
+          <li>
+            <a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a>
+          </li>
+          <li>
+            <ul>
+              <li>
+                <a href="users.html"
+                  ><i class="fas fa-user-friends"></i> Users</a
+                >
+              </li>
+              <li>
+                <a href="roles.html"><i class="fas fa-shield-alt"></i> Roles</a>
+              </li>
+              <li>
+                <a href="settings.html"><i class="fas fa-cogs"></i> Settings</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="main">
+        <h1>Dashboard</h1>
+        <p>Welcome to your dashboard!</p>
+
+        <div class="card-container">
+          <div class="card bg-primary">
+            <div class="">
+              <p>
+                View Your Account Balance
+                <i class="far fa-eye-slash" onclick="ShowBalance()"></i>
+              </p>
+              <div class="divider"></div>
+              <p class="text-primary balanceElement">₹*****/-</p>
+              <div class="divider"></div>
+              <button>
+                Download Statement <i class="far fa-arrow-alt-circle-down"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card bg-primary">
+            <div class="">
+              <p>Total Outstanding <i class="fas fa-wallet"></i></p>
+              <div class="divider"></div>
+              <p class="text-primary">₹20,000/-</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="card-container">
+          <div class="card bg-primary">
+            <div class="recent-transactions">
+              <h3>Recent Transactions</h3>
+              <div class="divider"></div>
+              <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Recent Transaction</th>
+                        <th>Dr/Cr</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-01-01</td>
+                        <td>Transaction 1</td>
+                        <td>₹1,000/-</td>
+                    </tr>
+                    <tr>
+                        <td>2023-01-02</td>
+                        <td>Transaction 2</td>
+                        <td>₹2,000/-</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card bg-primary">
+            <div class="">
+              <p>Categories most spent on</p>
+             <div class="divider"></div>
+              <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Recent Transaction</th>
+                        <th>Dr/Cr</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-01-01</td>
+                        <td>Transaction 1</td>
+                        <td>₹1,000/-</td>
+                    </tr>
+                    <tr>
+                        <td>2023-01-02</td>
+                        <td>Transaction 2</td>
+                        <td>₹2,000/-</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card bg-primary">
+            <div class="">
+              <p>Investments made</p>
+              <div class="divider"></div>
+              <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Recent Transaction</th>
+                        <th>Dr/Cr</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-01-01</td>
+                        <td>Transaction 1</td>
+                        <td>₹1,000/-</td>
+                    </tr>
+                    <tr>
+                        <td>2023-01-02</td>
+                        <td>Transaction 2</td>
+                        <td>₹2,000/-</td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-container">
+          <div class="card bg-red">
+            <h2>Open a savings account for Free</h2>
+            <button>Open Now</button>
+          </div>
+        </div>
+
+        <div class="card-container">
+            <div class="footer-menu">
+                <a href="help.html">Help</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </div>
+      </div>
+      <div class="footer">
+        <p>&copy; 2029 Basic Banking</p>
+      </div>
+    </div>
+
+    <script>
+      function logout() {
+        // Clear user session (this is just a placeholder, implement actual logout logic)
+        alert("You have been logged out.");
+        window.location.href = "/"; // Redirect to login page
+      }
+
+      function ShowBalance() {
+        const balanceElement = document.querySelector(".text-primary");
+        setTimeout(() => {
+          balanceElement.textContent = "₹1,00,000/-"; // Replace with actual balance fetching logic
+        }, 100); // Simulate a delay for fetching balance
+      }
+    </script>
+    
+  </body>
+</html>

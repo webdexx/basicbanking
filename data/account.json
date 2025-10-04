@@ -1,0 +1,18 @@
+{
+       "johndoe": {
+            "name": "John Doe",
+            "account": {
+            "id": "A10259",
+            "balance": 1000.0,
+            "blocked_amount": 0.0,
+            "transactions": []
+        }},
+        "janedoe": {
+            "name": "Jane Doe",
+            "account": {           
+            "id": "A10260",
+            "balance": 1500.0, 
+            "blocked_amount": 0.0,
+            "transactions": []
+        }}
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Screen - Banking</title>
+    <link rel="stylesheet" href="../css/login.css" />
+
+    <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-panel">
+        <div class="login-window">
+          <img src="../assets/logo.png" alt="Banking Logo" class="logo" />
+          <!-- <h2>Login to Your Account</h2> -->
+          <form id="loginForm">
+            <div class="error-message" id="loginErr"></div>
+
+            <label for="loginUsername">Username:</label>
+            <input type="text" id="loginUsername" name="username" required />
+
+            <label for="loginPassword">Password:</label>
+            <input
+              type="password"
+              id="loginPassword"
+              name="password"
+              required
+            />
+
+            <div class="form__label">
+              <input type="checkbox" id="remember" name="remember" />
+              <label for="remember">Remember me</label>
+            </div>
+            <button type="submit">Login</button>
+          </form>
+          <p class="signup-link">
+            Don't have an account? <a href="signup.html">Sign up here</a>
+          </p>
+        </div>
+        <div class="signup-window">
+          <img src="../assets/logo.png" alt="Banking Logo" class="logo" />
+          <!-- <h2>Login to Your Account</h2> -->
+          <form action="dashboard.html" method="GET">
+            <div id="err" class="error-message"></div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+            <div class="form__label">
+              <input type="checkbox" id="remember" name="remember" />
+              <label for="remember">Remember me</label>
+            </div>
+            <button type="submit">Login</button>
+          </form>
+          <p class="signup-link">
+            Don't have an account?
+            <a href="signup.html" class="signup-link__anchor">Sign up here</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="overlay text-center">
+          <h1>Welcome Back!</h1>
+          <p>Your trusted partner in banking.</p>
+          <div class="icon-container">
+            <img src="../assets/1.png" alt="" class="img__icon" />
+            <img src="../assets/2.png" alt="" class="img__icon" />
+            <img src="../assets/3.png" alt="" class="img__icon" />
+          </div>
+        </div>
+      </div>
+      <div class="lower-panel">
+        <h2>New to Basic Banking?</h2>
+        <p class="signup-link"><a href="#">Sign up</a> now to get started!</p>
+
+        <div class="service-btns">
+          <button class="service-btn">Help</button>
+          <button class="service-btn">Privacy</button>
+          <button class="service-btn">Terms</button>
+        </div>
+      </div>
+      <div class="footer">
+        &copy; 2028 Basic Banking Inc. All rights reserved.
+      </div>
+    </div>
+
+    <script>
+      // Scoped, robust login handler
+      (function () {
+        const form = document.getElementById("loginForm");
+        const errBox = document.getElementById("loginErr");
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          errBox.textContent = "";
+
+          const username = form
+            .querySelector('input[name="username"]')
+            .value.trim();
+          const password = form
+            .querySelector('input[name="password"]')
+            .value.trim();
+
+          if (!username || !password) {
+            errBox.textContent = "Please fill in both fields.";
+            return;
+          }
+
+          try {
+            // Try a relative path first (works for root or subfolder hosting)
+            const res = await fetch("../data/users.json");
+            if (!res.ok) {
+              console.error("Fetch failed:", res.status, res.statusText);
+              throw new Error("Users file not available (" + res.status + ")");
+            }
+
+            const json = await res.json();
+
+            // Accept both forms: top-level array OR { users: [...] }
+            let usersArray = [];
+            if (Array.isArray(json)) {
+              usersArray = json;
+            } else if (Array.isArray(json.users)) {
+              usersArray = json.users;
+            } else {
+              console.warn("Unexpected users.json format:", json);
+              errBox.textContent = "User store malformed (dev).";
+              return;
+            }
+
+            console.log(
+              "Loaded users:",
+              usersArray.map((u) => u.username)
+            );
+
+            const match = usersArray.find(
+              (u) => u.username === username && u.password === password
+            );
+
+            if (match) {
+              // demo redirect
+              window.location.href = "dashboard.html";
+            } else {
+              errBox.textContent = "**Invalid credentials**";
+              form.querySelector('input[name="password"]').focus();
+            }
+          } catch (err) {
+            console.error("Login fetch error:", err);
+            errBox.textContent =
+              "Unable to validate credentials. Try again later.";
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
